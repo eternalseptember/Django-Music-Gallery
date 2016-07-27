@@ -26,8 +26,7 @@
 							<a href="{% url 'music:detail' album.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
 
 							<!-- Delete Album -->
-							<!-- Replace the form action with { % url 'music:delete_album' album.id % } -->
-							<form action="" method="post" style="display:inline;">
+							<form action="{% url 'music:album-delete' album.id %}" method="post" style="display:inline;">
 								{% csrf_token %}
 								<input type="hidden" name="album_id" value="{{ album.id }}" />
 								<button type="submit" class="btn btn-default btn-sm">
@@ -49,7 +48,7 @@
 		{% else %}
 			<div class="col-sm-12">
 				<br>
-				<a href="#"> <!-- replace with { % url 'music:create_album' % } -->
+				<a href="{% url 'music:album-add' %}">
 					<button type="button" class="btn btn-success">
 						<span class="glyphicon glyphicon-plus"></span>&nbsp; Add an Album
 					</button>
