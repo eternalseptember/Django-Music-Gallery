@@ -1,26 +1,25 @@
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.contrib.auth.models import Permission, User
 
 
 # Create your models here.
 class Album(models.Model):
-	artist = models.CharField(max_length=250)
-	title = models.CharField(max_length=500)
-	genre = models.CharField(max_length=100)
+	user = models.ForeignKey(User, default = 1)
+	artist = models.CharField(max_length = 250)
+	title = models.CharField(max_length = 500)
+	genre = models.CharField(max_length = 100)
 	logo = models.FileField()
-
-	def get_absolute_url(self):
-		return reverse('music:detail', kwargs={'pk': self.pk})
+	is_favorite = models.BooleanField(default = False)
 
 	def __str__(self):
-		return self.artist + " - " + self.title
+		return self.title + ' - ' + self.artist
 
 
 class Song(models.Model):
-	album = models.ForeignKey(Album, on_delete=models.CASCADE)
-	file_type = models.CharField(max_length=10)
-	title = models.CharField(max_length=250)
-	is_favorite = models.BooleanField(default=False)
+	album = models.ForeignKey(Album, on_delete = models.CASCADE)
+	title = models.CharField(max_length = 250)
+	file = models.FileField(default = '')
+	is_favorite = models.BooleanField(default = False)
 
 	def __str__(self):
 		return self.title

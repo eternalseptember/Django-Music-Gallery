@@ -9,3 +9,21 @@ body {
 .navbar-brand {
 	font-family: 'Satisfy', cursive;
 }
+
+/* The rest of these were added from the repo. */
+ul.errorlist {
+	padding-left: 0px;
+}
+
+ul.errorlist > li {
+	list-style:none;
+}
+
+.glyphicon-star {
+	color: #CCCCCC;
+	font-size: 16px;
+}
+
+.glyphicon-star.active {
+	color: #FDB230;
+}

@@ -4,8 +4,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
-from .models import Album
-from .forms import UserForm
+from .models import Album, Song
+from .forms import UserForm, AlbumForm, SongForm
 
 
 class IndexView(generic.ListView):
