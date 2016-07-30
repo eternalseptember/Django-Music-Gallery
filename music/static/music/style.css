@@ -26,3 +26,11 @@ ul.errorlist > li {
 .glyphicon-star.active {
 	color: #FDB230;
 }
+
+h1 {
+	text-align: center;
+}
+
+.details-edit {
+	text-align:center;
+}
