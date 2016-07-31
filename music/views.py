@@ -39,7 +39,7 @@ class AlbumDelete(DeleteView):
 
 class SongCreate(CreateView):
 	model = Song
-	fields = ['title', 'file']
+	fields = ['album', 'title', 'file']
 
 
 class UserFormView(View):
