@@ -23,6 +23,7 @@ class Song(models.Model):
 	album = models.ForeignKey(Album, on_delete = models.CASCADE)
 	title = models.CharField(max_length = 250)
 	file = models.FileField(default = '')
+	track_number = models.IntegerField(default = 1)
 	is_favorite = models.BooleanField(default = False)
 
 	def get_absolute_url(self):

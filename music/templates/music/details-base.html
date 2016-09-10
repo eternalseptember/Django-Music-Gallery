@@ -1,0 +1,56 @@
+{% extends 'music/base.html' %}
+{% block title %}{{ album }}{% endblock %}
+
+{% block body %}
+<div class="container-fluid songs-container">
+	<div class="row">
+		
+
+		<!-- Left Album Info -->
+		<div class="col-sm-4 col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<a href="{% url 'music:detail' album.id %}">
+						{% if album.logo %}
+							<img src="{{ album.logo.url }}" style="height:300px; width:300px" class="responsive">
+						{% else %}
+							<h3>No image to display</h3>
+						{% endif %}
+					</a>
+					<h1>{{ album.title }} <small>{{ album.artist }}</small></h1>
+					<div class="details-edit">{{ album.genre }}
+						<!-- Edit the Album's info -->
+						<form action="{% url 'music:album-update' album.id %}" method="get" style="display:inline;">
+							{% csrf_token %}
+							<input type="hidden" name="album_id" value="{{ album.id }}" />
+							<button type="submit" class="btn btn-default btn-sm">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Right Song Info -->
+		<div class="col-sm-8 col-md-9">
+			<ul class="nav nav-pills" style="margin-bottom:10px;">
+				<li role="presentation" class="active"><a href="{% url 'music:detail' album.id %}">View All</a></li>
+				<li role="presentation"><a href="{% url 'music:song-add' album.id %}">Add New Song</a></li>
+			</ul>
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+
+					{% block detail_body %}
+					{% endblock %}
+
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+{% endblock %}

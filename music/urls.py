@@ -17,8 +17,11 @@ urlpatterns = [
 	# /music/register
 	url(r'^register/$', views.UserFormView.as_view(), name='register'),
 
-	# /music/album/<album_id>/add
+	# /music/album/<album_id>/add/
 	url(r'album/(?P<pk>[0-9]+)/add/$', views.SongCreate.as_view(), name="song-add"),
+	# /music/album/<album_id>/<song_id>/delete/
+	url(r'album/(?P<pk>[0-9]+)/(?P<song_id>[0-9]+)/delete/$', views.SongDelete.as_view(), name="song-delete")
+
 	# /music/album/<album_id>/favorite
 	#url(r'album/(?P<pk>[0-9]+)/favorite/$', views.AlbumFavorite.as_view(), name="album-favorite")
 ]

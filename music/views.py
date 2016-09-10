@@ -39,7 +39,20 @@ class AlbumDelete(DeleteView):
 
 class SongCreate(CreateView):
 	model = Song
-	fields = ['album', 'title', 'file']
+	template_name = 'music/song_form.html'
+	# fields = ['album', 'title', 'file', 'track_number', 'is_favorite']
+	fields = ['title', 'file', 'track_number', 'is_favorite']
+
+	def form_valid(self, form):
+		album_number = self.kwargs['pk']
+		form.instance.album = Album.objects.get(id = album_number)
+		return super(SongCreate, self).form_valid(form)
+
+
+class SongDelete(DeleteView):
+	model = Song
+	# Try to figure out how to direct back to the album's page
+	success_url = reverse_lazy('music:detail')
 
 
 class UserFormView(View):

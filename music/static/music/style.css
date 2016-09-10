@@ -1,3 +1,4 @@
+/* These were present in the tutorial */
 body {
 	background: white url('images/background.jpg');
 }
@@ -9,6 +10,7 @@ body {
 .navbar-brand {
 	font-family: 'Satisfy', cursive;
 }
+
 
 /* The rest of these were added from the repo. */
 ul.errorlist {
@@ -27,10 +29,16 @@ ul.errorlist > li {
 	color: #FDB230;
 }
 
+
+/* My custom styling */
 h1 {
 	text-align: center;
 }
 
 .details-edit {
 	text-align:center;
+}
+
+thead {
+	font-weight: bold;
 }
