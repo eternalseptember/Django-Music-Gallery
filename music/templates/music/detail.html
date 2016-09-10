@@ -12,6 +12,7 @@
 <table class="table">
 	<thead>
 		<tr>
+			<td>Track Number</td>
 			<td>Title</td>
 			<td>Audio File</td>
 			<td>Favorite</td>
@@ -21,6 +22,7 @@
 	<tbody>
 		{% for song in album.song_set.all %}
 			<tr>
+				<td>{{ song.track_number }}</td>
 				<td>{{ song.title }}</td>
 				<td>
 					<a target="_blank" href="{{ song.audio_file.url }}">
@@ -35,9 +37,12 @@
 				</td>
 				<td>
 					<!-- Form action is { % url 'music:song-delete' album.id song.id % } -->
-					<form action="{% url 'music:song-delete' album.id song.id %}" method="post" style="display:inline;">
+					<form action="{% url 'music:song-delete' pk=album.id song_id=song.id %}" method="post" style="display:inline;">
 						{% csrf_token %}
+						<!--
+						<input type="hidden" name="pk" value="{{ album.id }}" />
 						<input type="hidden" name="song_id" value="{{ song.id }}" />
+						-->
 						<button type="submit" class="btn btn-danger btn-xs">
 							<span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
 						</button>
