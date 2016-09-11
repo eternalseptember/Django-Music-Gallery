@@ -29,6 +29,7 @@ class AlbumCreate(CreateView):
 
 class AlbumUpdate(UpdateView):
 	model = Album
+	template_name = 'music/albums-edit_form.html'
 	fields = ['artist', 'title', 'genre', 'logo']
 
 
