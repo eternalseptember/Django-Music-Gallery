@@ -1,5 +1,6 @@
-{% extends 'music/details-base.html' %}
+{% extends 'music/albums-base.html' %}
 {% block albums_active %}active{% endblock %}
+{% block view_all_active %}active{% endblock %}
 
 <!-- Right Song Info -->
 {% block detail_body %}
@@ -12,10 +13,10 @@
 <table class="table">
 	<thead>
 		<tr>
-			<td>Track Number</td>
+			<td>Track #</td>
 			<td>Title</td>
-			<td>Audio File</td>
 			<td>Favorite</td>
+			<td>Audio File</td>
 			<td>Actions</td>
 		</tr>
 	</thead>
@@ -25,6 +26,12 @@
 				<td>{{ song.track_number }}</td>
 				<td>{{ song.title }}</td>
 				<td>
+					<!-- url was { % url 'music:favorite' song.id % } -->
+					<a href="#" class="btn-favorite">
+						<span class="glyphicon glyphicon-star {% if song.is_favorite %}active{% endif %}"></span>
+					</a>
+				</td>
+				<td>
 					<a target="_blank" href="{{ song.audio_file.url }}">
 						<button type="button" class="btn btn-success btn-xs">
 							<span class="glyphicon glyphicon-play">&nbsp; Play
@@ -32,17 +39,8 @@
 					</a>
 				</td>
 				<td>
-					<!-- url was { % url 'music:favorite' song.id % } -->
-					<a href="#" class="btn-favorite"><span class="glyphicon glyphicon-star {% if song.is_favorite %}active{% endif %}"></span></a>
-				</td>
-				<td>
-					<!-- Form action is { % url 'music:song-delete' album.id song.id % } -->
 					<form action="{% url 'music:song-delete' pk=album.id song_id=song.id %}" method="post" style="display:inline;">
 						{% csrf_token %}
-						<!--
-						<input type="hidden" name="pk" value="{{ album.id }}" />
-						<input type="hidden" name="song_id" value="{{ song.id }}" />
-						-->
 						<button type="submit" class="btn btn-danger btn-xs">
 							<span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
 						</button>

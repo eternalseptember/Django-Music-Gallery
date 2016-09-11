@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>{% block title %}BlandName Music App{% endblock %}</title>
-			<!-- Loads the path to your static files -->
+			<!-- Loads the path to static files -->
 			{% load staticfiles %}
 			<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 			<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
@@ -29,12 +29,15 @@
 
 				<!-- Items -->
 				<div class="collapse navbar-collapse" id="topNavBar">
+
 					<ul class="nav navbar-nav">
+						<!-- Menu Item: View All Albums -->
 						<li class="{% block albums_active %}{% endblock %}">
 							<a href="{% url 'music:index' %}">
 								<span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Albums
 							</a>
 						</li>
+						<!-- Menu Item: View All Songs -->
 						<li class="{% block songs_active %}{% endblock %}">
 							<!-- link is { % url 'music:songs' 'all' % } -->
 							<a href="#">
@@ -43,6 +46,7 @@
 						</li>	
 					</ul>
 
+						<!-- Menu Item: Search -->
 					<form class="navbar-form navbar-left" role="search" method="get" action="#">
 						<div class="form-group">
 							<!-- value should be { { request.GET.q } } -->
@@ -52,11 +56,13 @@
 					</form>
 
 					<ul class="nav navbar-nav navbar-right">
-						<li>
+						<!-- Menu Item: Add Album -->
+						<li class="{% block add_albums_active %}{% endblock %}">
 							<a href="{% url 'music:album-add' %}">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Album
 							</a>
 						</li>	
+						<!-- Menu Item: Logout -->
 						<li>
 							<!-- should be { % url 'music:logout_user' % } -->
 							<a href="#">
@@ -64,7 +70,9 @@
 							</a>
 						</li>	
 					</ul>
+
 				</div>
+
 
 			</div>
 		</nav>
