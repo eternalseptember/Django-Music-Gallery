@@ -1,31 +1,24 @@
-{% extends 'music/base.html' %}
-{% block title %}{{ album }}{% endblock %}
+{% extends 'music/albums-base.html' %}
+{% block albums_active %}active{% endblock %}
+{% block add_new_song_active %}active{% endblock %}
 
-{% block body %}
-<div class="container-fluid songs-container">
-	<div class="row">
-		
+<!-- Right Song Info -->
+{% block detail_body %}
 
-		<!-- Left Album Info -->
-		<div class="col-sm-4 col-md-3">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<a href="{% url 'music:detail' album.id %}">
-						{% if album.logo %}
-							<img src="{{ album.logo.url }}" class="img-responsive album-cover">
-						{% else %}
-							<h3>No image to display</h3>
-						{% endif %}
-					</a>
-					<div class="album-info">
-						<h1>{{ album.title }} <small>{{ album.artist }}</small></h1>
-						<p>{{ album.genre }}</p>
-					</div>
-				</div>
-			</div>
+<h3>Add a New Song</h3>
+
+{% if error_message %}
+	<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{% include 'music/form-template.html' %}
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-success">Submit</button>
 		</div>
-
-
 	</div>
-</div>
-{% endblock %}
+</form>
+
+{% endblock%}

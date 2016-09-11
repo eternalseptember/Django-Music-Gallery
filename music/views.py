@@ -42,6 +42,12 @@ class SongCreate(CreateView):
 	template_name = 'music/song_form.html'
 	fields = ['title', 'file', 'track_number', 'is_favorite']
 
+	def get_context_data(self, **kwargs):
+		album_number = self.kwargs['pk']
+		context = super(SongCreate, self).get_context_data(**kwargs)
+		context['album'] = Album.objects.get(id = album_number)
+		return context
+
 	def form_valid(self, form):
 		album_number = self.kwargs['pk']
 		form.instance.album = Album.objects.get(id = album_number)
