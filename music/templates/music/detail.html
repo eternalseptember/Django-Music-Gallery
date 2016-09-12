@@ -5,7 +5,7 @@
 <!-- Right Song Info -->
 {% block detail_body %}
 	
-<h3>All Songs</h3>
+<h3>{{ header_text }}</h3>
 {% if error_message %}
 	<p><strong>{{ error_message }}</strong></p>
 {% endif %}
@@ -17,6 +17,7 @@
 			<td>Title</td>
 			<td>Favorite</td>
 			<td>Audio File</td>
+			<td>Edit</td>
 			<td>Actions</td>
 		</tr>
 	</thead>
@@ -34,7 +35,14 @@
 				<td>
 					<a target="_blank" href="{{ song.audio_file.url }}">
 						<button type="button" class="btn btn-success btn-xs">
-							<span class="glyphicon glyphicon-play">&nbsp; Play
+							<span class="glyphicon glyphicon-play"> Play</span>
+						</button>
+					</a>
+				</td>
+				<td>
+					<a href="#">
+						<button type="button" class="btn btn-warning btn-xs">
+							<span class="glyphicon glyphicon-pencil"> Edit</span>
 						</button>
 					</a>
 				</td>
@@ -42,7 +50,7 @@
 					<form action="{% url 'music:song-delete' pk=album.id song_id=song.id %}" method="post" style="display:inline;">
 						{% csrf_token %}
 						<button type="submit" class="btn btn-danger btn-xs">
-							<span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+							<span class="glyphicon glyphicon-remove"> Delete</span>
 						</button>
 					</form>
 				</td>

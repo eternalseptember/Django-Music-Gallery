@@ -21,6 +21,12 @@ class DetailView(generic.DetailView):
 	model = Album
 	template_name = 'music/detail.html'
 
+	def get_context_data(self, **kwargs):
+		context = super(DetailView, self).get_context_data(**kwargs)
+		context['link_detail'] = True
+		context['header_text'] = "All Songs"
+		return context
+
 
 class AlbumCreate(CreateView):
 	model = Album
@@ -29,8 +35,14 @@ class AlbumCreate(CreateView):
 
 class AlbumUpdate(UpdateView):
 	model = Album
-	template_name = 'music/albums-edit_form.html'
+	template_name = 'music/detail_form.html'
 	fields = ['artist', 'title', 'genre', 'logo']
+
+	def get_context_data(self, **kwargs):
+		context = super(AlbumUpdate, self).get_context_data(**kwargs)
+		context['link_album_update'] = True
+		context['header_text'] = "Edit Album Info"
+		return context
 
 
 class AlbumDelete(DeleteView):
@@ -40,13 +52,15 @@ class AlbumDelete(DeleteView):
 
 class SongCreate(CreateView):
 	model = Song
-	template_name = 'music/song_form.html'
+	template_name = 'music/detail_form.html'
 	fields = ['title', 'file', 'track_number', 'is_favorite']
 
 	def get_context_data(self, **kwargs):
 		album_number = self.kwargs['pk']
 		context = super(SongCreate, self).get_context_data(**kwargs)
 		context['album'] = Album.objects.get(id = album_number)
+		context['link_song_create'] = True
+		context['header_text'] = "Add New Song"
 		return context
 
 	def form_valid(self, form):

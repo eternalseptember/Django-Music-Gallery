@@ -1,11 +1,11 @@
 {% extends 'music/albums-base.html' %}
 {% block albums_active %}active{% endblock %}
-{% block add_new_song_active %}active{% endblock %}
+
 
 <!-- Right Song Info -->
 {% block detail_body %}
 
-<h3>Add a New Song</h3>
+<h3>{{ header_text }}</h3>
 
 {% if error_message %}
 	<p><strong>{{ error_message }}</strong></p>

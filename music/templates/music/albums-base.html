@@ -29,13 +29,13 @@
 		<!-- Right Song Info -->
 		<div class="col-sm-8 col-md-9">
 			<ul class="nav nav-pills" style="margin-bottom:10px;">
-				<li role="presentation" class="{% block view_all_active %}{% endblock %}">
+				<li role="presentation" class="{% if link_detail %}active{% endif %}">
 					<a class="btn btn-default" href="{% url 'music:detail' pk=album.id %}">View All</a></li>
-				<li role="presentation" class="{% block add_new_song_active %}{% endblock %}">
+				<li role="presentation" class="{% if link_song_create %}active{% endif %}">
 					<a class="btn btn-default" href="{% url 'music:song-add' pk=album.id %}">Add New Song</a></li>
-				<li role="presentation" class="{% block edit_album_active %}{% endblock %}">
+				<li role="presentation" class="{% if link_album_update %}active{% endif %}">
 					<a class="btn btn-default" href="{% url 'music:album-update' pk=album.id %}">Edit Album Info</a></li>
-				<li role="presentation" class="{% block edit_song_active %}{% endblock %}">
+				<li role="presentation" class="{% if link_song_edit %}active{% endif %}">
 					<a class="btn btn-default" href="#">Edit Song Info</a></li>
 			</ul>
 
