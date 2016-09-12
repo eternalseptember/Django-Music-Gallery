@@ -38,14 +38,6 @@ ul.errorlist > li {
 .album-cover {
 }
 
-/* Because this is really a form button and was trying to match it with links */
-.edit-album-info-btn {
-	line-height: 27px;
-}
-
-ul li a.btn-default {
-
-}
 
 thead {
 	font-weight: bold;

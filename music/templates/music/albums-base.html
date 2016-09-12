@@ -30,19 +30,13 @@
 		<div class="col-sm-8 col-md-9">
 			<ul class="nav nav-pills" style="margin-bottom:10px;">
 				<li role="presentation" class="{% block view_all_active %}{% endblock %}">
-					<a class="btn btn-default" href="{% url 'music:detail' album.id %}">View All</a></li>
+					<a class="btn btn-default" href="{% url 'music:detail' pk=album.id %}">View All</a></li>
 				<li role="presentation" class="{% block add_new_song_active %}{% endblock %}">
 					<a class="btn btn-default" href="{% url 'music:song-add' pk=album.id %}">Add New Song</a></li>
-				<!-- Edit the Album's info -->
-				<li role="presentation">
-					<form action="{% url 'music:album-update' album.id %}" method="get">
-						{% csrf_token %}
-						<button type="submit" class="btn {% block edit_album_active %}btn-default{% endblock %} edit-album-info-btn">Edit Album Info</button>
-					</form>
-				</li>
+				<li role="presentation" class="{% block edit_album_active %}{% endblock %}">
+					<a class="btn btn-default" href="{% url 'music:album-update' pk=album.id %}">Edit Album Info</a></li>
 				<li role="presentation" class="{% block edit_song_active %}{% endblock %}">
-					<a class="btn btn-default" href="#">Edit Song Info</a>
-				</li>
+					<a class="btn btn-default" href="#">Edit Song Info</a></li>
 			</ul>
 
 			<div class="panel panel-default">
