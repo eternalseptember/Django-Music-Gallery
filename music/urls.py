@@ -17,8 +17,8 @@ urlpatterns = [
 	url(r'album/(?P<pk>[0-9]+)/add/$', views.SongCreate.as_view(), name="song-add"),
 	# /music/album/<album_id>/<song_id>/delete/
 	url(r'album/(?P<pk>[0-9]+)/(?P<song_id>[0-9]+)/delete/$', views.SongDelete.as_view(), name="song-delete"),
-
-
+	# /music/album/<album_id>/<song_id>/update
+	url(r'album/(?P<pk>[0-9]+)/(?P<song_id>[0-9]+)/update/$', views.SongUpdate.as_view(), name="song-update"),
 	# /music/album/<album_id>
 	url(r'album/(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
 	# /music/

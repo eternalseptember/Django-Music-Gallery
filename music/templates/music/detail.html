@@ -1,4 +1,4 @@
-{% extends 'music/albums-base.html' %}
+{% extends 'music/detail-base.html' %}
 {% block albums_active %}active{% endblock %}
 {% block view_all_active %}active{% endblock %}
 
@@ -40,7 +40,7 @@
 					</a>
 				</td>
 				<td>
-					<a href="#">
+					<a href="{% url 'music:song-update' pk=album.id song_id=song.id %}">
 						<button type="button" class="btn btn-warning btn-xs">
 							<span class="glyphicon glyphicon-pencil"> Edit</span>
 						</button>

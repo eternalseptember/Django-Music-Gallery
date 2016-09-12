@@ -35,7 +35,7 @@
 					<a class="btn btn-default" href="{% url 'music:song-add' pk=album.id %}">Add New Song</a></li>
 				<li role="presentation" class="{% if link_album_update %}active{% endif %}">
 					<a class="btn btn-default" href="{% url 'music:album-update' pk=album.id %}">Edit Album Info</a></li>
-				<li role="presentation" class="{% if link_song_edit %}active{% endif %}">
+				<li role="presentation" class="{% if link_song_update %}active{% endif %}">
 					<a class="btn btn-default" href="#">Edit Song Info</a></li>
 			</ul>
 
