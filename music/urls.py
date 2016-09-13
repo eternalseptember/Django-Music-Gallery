@@ -30,5 +30,7 @@ urlpatterns = [
 
 	# /music/
 	url(r'^$', views.IndexView.as_view(), name='index'),
+	# /music/songs/
+	url(r'songs/$', views.SongListView.as_view(), name='songs')
 
 ]
