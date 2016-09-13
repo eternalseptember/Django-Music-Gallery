@@ -1,9 +1,12 @@
 from django.views import generic
+from django.views.generic import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render, redirect
+
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
-from django.views.generic import View
+
 from .models import Album, Song
 from .forms import UserForm
 
@@ -36,7 +39,7 @@ class AlbumCreate(CreateView):
 class AlbumUpdate(UpdateView):
 	model = Album
 	template_name = 'music/detail_form.html'
-	fields = ['artist', 'title', 'genre', 'logo']
+	fields = ['artist', 'title', 'genre', 'logo', 'is_favorite']
 
 	def get_context_data(self, **kwargs):
 		context = super(AlbumUpdate, self).get_context_data(**kwargs)
@@ -48,6 +51,18 @@ class AlbumUpdate(UpdateView):
 class AlbumDelete(DeleteView):
 	model = Album
 	success_url = reverse_lazy('music:index')
+
+
+def AlbumFavorite(request, **kwargs):
+	album = get_object_or_404(Album, pk = kwargs['pk'])
+
+	try:
+		album.is_favorite = not album.is_favorite
+		album.save()
+	except (KeyError, Album.DoesNotExist):
+		return HttpResponse("Album not found.")
+	else:
+		return redirect('music:index')
 
 
 class SongCreate(CreateView):
@@ -90,6 +105,18 @@ class SongDelete(DeleteView):
 
 	def get_success_url(self):
 		return reverse_lazy('music:detail', kwargs = { 'pk': self.kwargs['pk'] })
+
+
+def SongFavorite(request, **kwargs):
+	song = get_object_or_404(Song, pk = kwargs['song_id'])
+
+	try:
+		song.is_favorite = not song.is_favorite
+		song.save()
+	except (KeyError, Song.DoesNotExist):
+		return HttpResponse("Song not found.")
+	else:
+		return redirect('music:detail', pk = kwargs['pk'] )
 
 
 class UserFormView(View):

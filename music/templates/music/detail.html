@@ -27,8 +27,7 @@
 				<td>{{ song.track_number }}</td>
 				<td>{{ song.title }}</td>
 				<td>
-					<!-- url was { % url 'music:favorite' song.id % } -->
-					<a href="#" class="btn-favorite">
+					<a href="{% url 'music:song-favorite' pk=album.id song_id=song.id %}" class="btn-favorite">
 						<span class="glyphicon glyphicon-star {% if song.is_favorite %}active{% endif %}"></span>
 					</a>
 				</td>
