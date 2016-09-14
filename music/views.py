@@ -41,13 +41,13 @@ class DetailView(generic.DetailView):
 
 class AlbumCreate(CreateView):
 	model = Album
-	fields = ['artist', 'title', 'genre', 'logo']
+	fields = ['artist', 'title', 'year', 'logo']
 
 
 class AlbumUpdate(UpdateView):
 	model = Album
 	template_name = 'music/detail_form.html'
-	fields = ['artist', 'title', 'genre', 'logo', 'is_favorite']
+	fields = ['artist', 'title', 'year', 'logo', 'is_favorite']
 
 	def get_context_data(self, **kwargs):
 		context = super(AlbumUpdate, self).get_context_data(**kwargs)

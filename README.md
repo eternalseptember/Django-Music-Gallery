@@ -19,10 +19,13 @@ Tutoral: https://www.youtube.com/playlist?list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1I
   * Broke down the details template into another base template.
   * "Add New Song" button works and redirects to the album's details view after a song has been added.
   * Added a "track number" field for the Song model.
-  * Added a button to edit album details in the albums-base file.
+  * Took out "genre" and added "year" field for Albums model.
+  * Added a button to edit album details in the details-base file.
   * Added a button to highlight when a song is being edited.
   * The "Delete" function for songs work, and stays on the album page.
+  * The "Favorite" function for albums and songs work, and stays on the album page when favoriting a song.
   * Removed the hidden fields on forms.
   * Added a "reset" button on forms.
   * Specified keyword arguments in templates.
   * Created a page listing all songs, which will cause the "Songs" menu option to become active.
+  * Deleting an album or song deletes the uploaded files from storage as well.
