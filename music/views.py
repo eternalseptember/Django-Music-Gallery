@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from .models import Album, Song
 from .forms import UserForm
@@ -127,7 +127,17 @@ def SongFavorite(request, **kwargs):
 		return redirect('music:detail', pk = kwargs['pk'] )
 
 
-class UserFormView(View):
+def Logout(request):
+	logout(request)
+	return redirect('music:index')
+
+
+class UserLogin(View):
+	form_class = UserForm
+	
+
+
+class UserRegister(View):
 	form_class = UserForm
 	template_name = 'music/registration_form.html'
 

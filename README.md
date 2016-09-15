@@ -9,8 +9,10 @@ Tutoral: https://www.youtube.com/playlist?list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1I
   * non-functional "Search" menu option
   * ~~non-functional "Songs" menu option~~
   * ~~non-functional "Delete" buttons for songs~~
-  * non-functional "Logout" menu option
-  * questionable view for people who have not logged in (should probably have "Login" and "Register" buttons when people are not logged in)
+  * ~~non-functional "Logout" menu option~~
+  * ~~questionable view for people who have not logged in (should probably have "Login" and "Register" buttons when people are not logged in)~~
+  * ~~Disconnected user-registration form~~
+  * No way to log users in without using the admin panel
 3. Modifications:
   * Changed when the navbar images become active.
   * On the index page, the delete-album's glyphicon was changed to a red background.
@@ -29,3 +31,4 @@ Tutoral: https://www.youtube.com/playlist?list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1I
   * Specified keyword arguments in templates.
   * Created a page listing all songs, which will cause the "Songs" menu option to become active.
   * Deleting an album or song deletes the uploaded files from storage as well.
+  * When the user is logged out, the button now shows "Register" and "Login" options.

@@ -5,7 +5,11 @@ app_name = 'music'
 
 urlpatterns = [
 	# /music/register
-	url(r'^register/$', views.UserFormView.as_view(), name='register'),
+	url(r'^register/$', views.UserRegister.as_view(), name='register'),
+	# /music/login
+	url(r'^login/$', views.UserLogin, name="login"),
+	# /music/logout
+	url(r'^logout/$', views.Logout, name="logout"),
 
 
 	# /music/album/add
