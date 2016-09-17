@@ -12,7 +12,7 @@ Tutoral: https://www.youtube.com/playlist?list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1I
   * ~~non-functional "Logout" menu option~~
   * ~~questionable view for people who have not logged in (should probably have "Login" and "Register" buttons when people are not logged in)~~
   * ~~Disconnected user-registration form~~
-  * No way to log users in without using the admin panel
+  * ~~No way to log users in without using the admin panel~~
 3. Modifications:
   * Changed when the navbar images become active.
   * On the index page, the delete-album's glyphicon was changed to a red background.

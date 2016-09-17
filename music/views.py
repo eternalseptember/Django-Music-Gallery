@@ -136,6 +136,12 @@ class UserLogin(FormView):
 	form_class = LoginForm
 	template_name = 'music/user_form.html'
 
+
+	def get(self, request):
+		form = self.form_class(None)
+		return render(request, self.template_name, {'form': form})
+
+
 	def post(self, request, *args, **kwargs):
 		username = request.POST['username']
 		password = request.POST['password']
@@ -146,7 +152,10 @@ class UserLogin(FormView):
 			if user.is_active:
 				login(request, user)
 				return redirect('music:index')
-			#else, return a 'disabled account' message
+			else:
+				return render(request, self.template_name, {'form': self.form_class(None), 'error_message': 'Inactive User'})
+		else: 
+			return render(request, self.template_name, {'form': self.form_class(None), 'error_message': 'Invalid Credentials'})
 
 
 
