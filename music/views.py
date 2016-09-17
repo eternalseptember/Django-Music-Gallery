@@ -13,7 +13,6 @@ from .forms import RegisterForm, LoginForm
 
 class IndexView(generic.ListView):
 	template_name = 'music/index.html'
-	# The default context object name is 'object_list'.
 	context_object_name = 'all_albums'
 
 	def get_queryset(self):
@@ -136,11 +135,11 @@ class UserLogin(FormView):
 	form_class = LoginForm
 	template_name = 'music/user_form.html'
 
-
-	def get(self, request):
-		form = self.form_class(None)
-		return render(request, self.template_name, {'form': form})
-
+	def get_context_data(self, **kwargs):
+		context = super(UserLogin, self).get_context_data(**kwargs)
+		context['header_text'] = 'Log In'
+		context['login'] = True
+		return context
 
 	def post(self, request, *args, **kwargs):
 		username = request.POST['username']
@@ -153,22 +152,21 @@ class UserLogin(FormView):
 				login(request, user)
 				return redirect('music:index')
 			else:
-				return render(request, self.template_name, {'form': self.form_class(None), 'error_message': 'Inactive User'})
+				return render(request, self.template_name, {'form': self.form_class(None), 'error_message': 'Inactive User', 'header_text': 'Log In', 'login': True})
 		else: 
-			return render(request, self.template_name, {'form': self.form_class(None), 'error_message': 'Invalid Credentials'})
+			return render(request, self.template_name, {'form': self.form_class(None), 'error_message': 'Invalid Credentials', 'header_text': 'Log In', 'login': True})
 
 
-
-class UserRegister(View):
+class UserRegister(FormView):
 	form_class = RegisterForm
-	template_name = 'music/registration_form.html'
+	template_name = 'music/user_form.html'
 
-	# display blank form
-	def get(self, request):
-		form = self.form_class(None)
-		return render(request, self.template_name, {'form': form}) 
+	def get_context_data(self, **kwargs):
+		context = super(UserRegister, self).get_context_data(**kwargs)
+		context['header_text'] = 'Register New Account'
+		context['register_user'] = True
+		return context
 
-	# process form data
 	def post(self, request):
 		form = self.form_class(request.POST)
 
@@ -189,5 +187,5 @@ class UserRegister(View):
 					login(request, user)
 					return redirect('music:index')
 
-		return render(request, self.template_name, {'form': form})
+		return render(request, self.template_name, {'form': form, 'header_text': 'Register New Account', 'register_user': True})
 

@@ -78,13 +78,13 @@
 					{% else %}
 					<ul class="nav navbar-nav navbar-right">
 						<!-- Menu Item: Register -->
-						<li class="{% block register_user %}{% endblock %}">
+						<li class="{% if register_user %}active{% endif %}">
 							<a href="{% url 'music:register' %}">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Register
 							</a>
 						</li>	
 						<!-- Menu Item: Login -->
-						<li class="{% block login %}{% endblock %}">
+						<li class="{% if login %}active{% endif %}">
 							<a href="{% url 'music:login' %}">
 								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Login
 							</a>
