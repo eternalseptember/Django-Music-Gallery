@@ -1,6 +1,6 @@
 from django.views import generic
 from django.views.generic import View
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.core.urlresolvers import reverse_lazy
 
 from django.http import HttpResponse
@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 
 from .models import Album, Song
-from .forms import UserForm
+from .forms import RegisterForm, LoginForm
 
 
 class IndexView(generic.ListView):
@@ -132,13 +132,26 @@ def Logout(request):
 	return redirect('music:index')
 
 
-class UserLogin(View):
-	form_class = UserForm
-	
+class UserLogin(FormView):
+	form_class = LoginForm
+	template_name = 'music/user_form.html'
+
+	def post(self, request, *args, **kwargs):
+		username = request.POST['username']
+		password = request.POST['password']
+
+		user = authenticate(username = username, password = password)
+
+		if user is not None:
+			if user.is_active:
+				login(request, user)
+				return redirect('music:index')
+			#else, return a 'disabled account' message
+
 
 
 class UserRegister(View):
-	form_class = UserForm
+	form_class = RegisterForm
 	template_name = 'music/registration_form.html'
 
 	# display blank form

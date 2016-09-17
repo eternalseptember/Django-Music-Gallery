@@ -77,14 +77,14 @@
 					<!-- If the user is logged out, show the "Register" and "Login" options. -->
 					{% else %}
 					<ul class="nav navbar-nav navbar-right">
-						<!-- Menu Item: Add Album -->
+						<!-- Menu Item: Register -->
 						<li class="{% block register_user %}{% endblock %}">
 							<a href="{% url 'music:register' %}">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Register
 							</a>
 						</li>	
-						<!-- Menu Item: Logout -->
-						<li>
+						<!-- Menu Item: Login -->
+						<li class="{% block login %}{% endblock %}">
 							<a href="{% url 'music:login' %}">
 								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Login
 							</a>

@@ -7,7 +7,7 @@ urlpatterns = [
 	# /music/register
 	url(r'^register/$', views.UserRegister.as_view(), name='register'),
 	# /music/login
-	url(r'^login/$', views.UserLogin, name="login"),
+	url(r'^login/$', views.UserLogin.as_view(), name="login"),
 	# /music/logout
 	url(r'^logout/$', views.Logout, name="logout"),
 
