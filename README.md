@@ -32,3 +32,4 @@ Tutoral: https://www.youtube.com/playlist?list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1I
   * Created a page listing all songs, which will cause the "Songs" menu option to become active.
   * Deleting an album or song deletes the uploaded files from storage as well.
   * When the user is logged out, the button now shows "Register" and "Login" options.
+  * Replaced the "Play" button with the audio control to play the uploaded media file.

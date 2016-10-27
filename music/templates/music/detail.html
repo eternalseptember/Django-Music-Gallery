@@ -15,7 +15,7 @@
 			<td>Track #</td>
 			<td>Title</td>
 			<td>Favorite</td>
-			<td>Audio File</td>
+			<td>Play</td>
 			<td>Edit</td>
 			<td>Actions</td>
 		</tr>
@@ -31,11 +31,13 @@
 					</a>
 				</td>
 				<td>
-					<a target="_blank" href="{{ song.audio_file.url }}">
-						<button type="button" class="btn btn-success btn-xs">
-							<span class="glyphicon glyphicon-play"> Play</span>
-						</button>
-					</a>
+					{% if song.file %}
+						<audio controls>
+							<source src="{{ song.file.url }}">
+						</audio>
+					{% else %}
+						No file uploaded.
+					{% endif %}
 				</td>
 				<td>
 					<a href="{% url 'music:song-update' pk=album.id song_id=song.id %}">
