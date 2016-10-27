@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
+import operator
 
 from .models import Album, Song
 from .forms import RegisterForm, LoginForm
@@ -25,6 +27,28 @@ class SongListView(generic.ListView):
 
 	def get_queryset(self):
 		return Song.objects.all()
+
+
+class SearchView(generic.ListView):
+	template_name = 'music/search.html'
+	context_object_name = 'results'
+
+	def get_queryset(self):
+		result = super(SearchView, self).get_queryset()
+
+		query = self.request.GET.get('q')
+		if query:
+			query_list = query.split()
+			result = result.filter(
+				reduce(operator.and_,
+					(Q(Album__icontains = q) for q in query_list)) |
+				reduce(operator.and_,
+					(Q(Song__icontains = q) for q in query_list)) |
+				reduce(operator.and_,
+					(Q(Artist__icontains = q) for q in query_list))
+			)
+
+		return result
 
 
 class DetailView(generic.DetailView):

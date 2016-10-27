@@ -32,9 +32,11 @@ urlpatterns = [
 	url(r'album/(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
 
 
+	# /music/songs/
+	url(r'songs/$', views.SongListView.as_view(), name='songs'),
+	# /music/search
+	url(r'search/$', views.SearchView.as_view(), name='search'),
 	# /music/
 	url(r'^$', views.IndexView.as_view(), name='index'),
-	# /music/songs/
-	url(r'songs/$', views.SongListView.as_view(), name='songs')
 
 ]
