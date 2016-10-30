@@ -1,5 +1,4 @@
 from django.views import generic
-from django.views.generic import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.core.urlresolvers import reverse_lazy
 
@@ -32,23 +31,13 @@ class SongListView(generic.ListView):
 class SearchView(generic.ListView):
 	template_name = 'music/search.html'
 	context_object_name = 'results'
+	# model = Album
 
 	def get_queryset(self):
-		result = super(SearchView, self).get_queryset()
-
 		query = self.request.GET.get('q')
-		if query:
-			query_list = query.split()
-			result = result.filter(
-				reduce(operator.and_,
-					(Q(Album__icontains = q) for q in query_list)) |
-				reduce(operator.and_,
-					(Q(Song__icontains = q) for q in query_list)) |
-				reduce(operator.and_,
-					(Q(Artist__icontains = q) for q in query_list))
-			)
 
-		return result
+		if query:
+			return Album.objects.filter(Q(artist__icontains=query))
 
 
 class DetailView(generic.DetailView):
