@@ -35,17 +35,22 @@ ul.errorlist > li {
 	text-align: center;
 }
 
-.album-cover {
-}
-
 .search-album-cover {
 	height:120px; 
 	width:120px;
 }
 
+.caption {
+	text-align: center;
+}
+
 h2 {
 	font-weight: bold;
-	font-size:18px;
+	font-size: 18px;
+}
+
+h4 {
+	font-size: 16px;
 }
 
 thead {
