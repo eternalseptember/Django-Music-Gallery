@@ -6,7 +6,7 @@ Tutoral: https://www.youtube.com/playlist?list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1I
 2. The video tutorial ends with:
   * ~~non-functional "Add New Song" button on the details view~~
   * ~~non-functional "Favorite" buttons~~
-  * non-functional "Search" menu option
+  * ~~non-functional "Search" menu option~~
   * ~~non-functional "Songs" menu option~~
   * ~~non-functional "Delete" buttons for songs~~
   * ~~non-functional "Logout" menu option~~
@@ -33,3 +33,4 @@ Tutoral: https://www.youtube.com/playlist?list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1I
   * Deleting an album or song deletes the uploaded files from storage as well.
   * When the user is logged out, the button now shows "Register" and "Login" options.
   * Replaced the "Play" button with the audio control to play the uploaded media file.
+  * Search works! Search through song title, album artist, album title, and album year.

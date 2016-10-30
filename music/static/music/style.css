@@ -38,6 +38,15 @@ ul.errorlist > li {
 .album-cover {
 }
 
+.search-album-cover {
+	height:120px; 
+	width:120px;
+}
+
+h2 {
+	font-weight: bold;
+	font-size:18px;
+}
 
 thead {
 	font-weight: bold;

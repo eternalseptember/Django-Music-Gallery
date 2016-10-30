@@ -31,13 +31,18 @@ class SongListView(generic.ListView):
 class SearchView(generic.ListView):
 	template_name = 'music/search.html'
 	context_object_name = 'results'
-	# model = Album
 
 	def get_queryset(self):
 		query = self.request.GET.get('q')
 
-		if query:
-			return Album.objects.filter(Q(artist__icontains=query))
+		if query:	
+			search_results = Song.objects.filter(
+				Q(album__artist__icontains = query) | 
+				Q(album__title__icontains = query) |
+				Q(album__year__icontains = query) |
+				Q(title__icontains = query)
+			)
+		return search_results
 
 
 class DetailView(generic.DetailView):
